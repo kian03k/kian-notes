@@ -170,6 +170,7 @@ D:\notes\
 1. 按 `Ctrl+K` `Ctrl+S` 打开快捷键设置
 2. 搜索 `paste image`
 3. 右键重新设置快捷键
+> 已发现QQ音乐与ctrl+alt+v冲突
 
 ### Q2：想修改图片保存路径格式？
 `pasteImage.path` 支持多种变量组合：
