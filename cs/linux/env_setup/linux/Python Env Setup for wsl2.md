@@ -3,11 +3,11 @@
 This guide provides a step-by-step, best-practice approach to setting up a professional Python development environment on Windows using WSL 2 (Windows Subsystem for Linux), Miniconda, and PyCharm. This combination delivers native Linux performance with the convenience of the Windows UI, making it the gold standard for Python data science and backend development.
 
 ## Table of Contents
-1.  [Why This Stack?](#why-this-stack)
-2.  [Part 1: Setting Up WSL 2 & Miniconda](#part-1-setting-up-wsl-2--miniconda)
-3.  [Part 2: Connecting PyCharm to WSL](#part-2-connecting-pycharm-to-wsl)
-4.  [Part 3: Best Practices & Troubleshooting](#part-3-best-practices--troubleshooting)
-5.  [Summary Checklist](#summary-checklist)
+1.  [Why This Stack?](Python%20Env%20Setup%20for%20wsl2.md#why-this-stack)
+2.  [Part 1: Setting Up WSL 2 & Miniconda](Python%20Env%20Setup%20for%20wsl2.md#part-1-setting-up-wsl-2--miniconda)
+3.  [Part 2: Connecting PyCharm to WSL](Python%20Env%20Setup%20for%20wsl2.md#part-2-connecting-pycharm-to-wsl)
+4.  [Part 3: Best Practices & Troubleshooting](Python%20Env%20Setup%20for%20wsl2.md#part-3-best-practices--troubleshooting)
+5.  [Summary Checklist](Python%20Env%20Setup%20for%20wsl2.md#summary-checklist)
 
 ---
 
