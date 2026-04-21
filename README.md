@@ -1,10 +1,5 @@
 #kian-notes
-
-2026/3/14 成功配置Linux与git仓库互联
-
-2026/3/15 win connect git
-
-
+个人的笔记仓库，如有帮组可参考使用。
 ```plaintxt
 /
 ├── README.md                # 知识库总览
