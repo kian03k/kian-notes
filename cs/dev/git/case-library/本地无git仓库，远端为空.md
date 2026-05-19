@@ -57,10 +57,10 @@ git remote -v
 git fetch origin
 
 # 2. 创建本地 master 分支并关联远程（如果远程默认是 master）
-git checkout -b master origin/master
+ git checkout -b main origin/main
 
 # 注意：如果远程默认是 main 分支，请执行：
-# git checkout -b main origin/main
+# git checkout -b master origin/master
 ```
 
 ---
@@ -94,7 +94,7 @@ git commit -m "Initial commit: SaaS project"
 
 ```bash
 # 推送并建立上游追踪关系
-git push -u origin master
+git push -u origin main
 ```
 
 ---
