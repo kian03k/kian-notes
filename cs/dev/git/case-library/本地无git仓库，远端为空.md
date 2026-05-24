@@ -84,7 +84,7 @@ git add .
 
 ```bash
 # 提交更改
-git commit -m "Initial commit: SaaS project"
+git commit -m "Initial commit: create project"
 ```
 
 ---
