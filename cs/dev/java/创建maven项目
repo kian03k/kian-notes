@@ -1,0 +1,365 @@
+
+
+---
+
+## 🚀 目标：用 Maven 构建一个 “Hello Maven!” 的 Java 项目
+
+我们最终会得到：
+- 一个标准 Maven 项目结构
+- 一个主类输出 `Hello Maven!`
+- 一个测试类验证功能
+- 一键打包成可运行的 JAR 文件
+
+---
+
+## ✅ 第一步：安装 Maven（Windows / macOS / Linux 通用）
+
+### 1. 下载 Maven
+访问官网：👉 https://maven.apache.org/download.cgi
+
+点击 **“Binary zip archive”** 下载（如 `apache-maven-3.9.6-bin.zip`）
+
+### 2. 解压到任意目录（推荐无空格路径）
+例如：
+- Windows：`C:\tools\apache-maven-3.9.6`
+- macOS/Linux：`/opt/apache-maven-3.9.6`
+
+### 3. 配置环境变量
+
+#### ✅ Windows：
+1. 右键“此电脑” → “属性” → “高级系统设置” → “环境变量”
+2. 新建系统变量：
+   - 变量名：`MAVEN_HOME`
+   - 变量值：`C:\tools\apache-maven-3.9.6`
+3. 编辑 `Path`，添加：
+   ```
+   %MAVEN_HOME%\bin
+   ```
+
+#### ✅ macOS / Linux：
+在终端执行：
+```bash
+echo 'export MAVEN_HOME=/opt/apache-maven-3.9.6' >> ~/.bashrc
+echo 'export PATH=$MAVEN_HOME/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+```
+
+> 💡 如果你用的是 `zsh`，替换 `.bashrc` 为 `.zshrc`
+
+### 4. 验证安装
+打开新终端，输入：
+```bash
+mvn -v
+```
+
+✅ 正确输出示例：
+```
+Apache Maven 3.9.6 (bc0240f3c744dd6b6ec2920b3cd08dcc295161ae)
+Maven home: /opt/apache-maven-3.9.6
+Java version: 17.0.10, vendor: Eclipse Adoptium, runtime: /usr/lib/jvm/temurin-17-jdk-amd64
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "6.5.0-xx-generic", arch: "amd64", family: "unix"
+```
+
+> ⚠️ 如果报错：请检查路径是否正确，或重启终端！
+
+---
+
+## ✅ 第二步：创建 Maven 项目（两种方式）
+
+### ✅ 推荐方式：用 IDE 创建（IntelliJ IDEA）
+
+#### 1. 打开 IntelliJ IDEA
+- 点击 `New Project`
+- 选择左侧 `Maven`
+- 勾选 `Create from archetype` → 选 `maven-archetype-quickstart`
+- 点击 `Next`
+
+#### 2. 填写项目信息
+| 字段 | 填写示例 |
+|------|----------|
+| GroupId | `com.example` |
+| ArtifactId | `hello-maven` |
+| Version | `1.0-SNAPSHOT` |
+| Project name | `hello-maven` |
+
+> ✅ 点击 `Finish`，IDE 会自动下载依赖并生成项目结构。
+
+#### 3. 项目结构自动生成如下：
+```
+hello-maven/
+├── src/
+│   ├── main/
+│   │   └── java/
+│   │       └── com/example/
+│   │           └── App.java       ← 主程序
+│   └── test/
+│       └── java/
+│           └── com/example/
+│               └── AppTest.java   ← 测试类
+└── pom.xml                        ← 核心配置文件
+```
+
+---
+
+## ✅ 第三步：修改代码（写你的第一个 Java 程序）
+
+### 1. 修改 `App.java`（主类）
+打开 `src/main/java/com/example/App.java`
+
+替换为：
+```java
+package com.example;
+
+public class App {
+    public static void main(String[] args) {
+        System.out.println("🎉 Hello Maven! 你成功构建了第一个 Maven 项目！");
+    }
+}
+```
+
+### 2. 修改 `AppTest.java`（测试类）
+打开 `src/test/java/com/example/AppTest.java`
+
+替换为：
+```java
+package com.example;
+
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class AppTest {
+    @Test
+    public void testApp() {
+        assertTrue(true); // 测试永远通过，验证测试框架正常
+    }
+}
+```
+
+> ✅ 我们只是验证测试能跑起来，不写复杂逻辑，重点是流程！
+
+---
+
+## ✅ 第四步：配置 Java 版本（重要！）
+
+Maven 默认可能用旧版 Java，导致编译失败。我们强制指定 Java 17（推荐）。
+
+### 编辑 `pom.xml`，在 `<project>` 标签内添加 `<properties>` 和 `<build>`：
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>hello-maven</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+> ✅ **重点说明**：
+> - `source/target=17`：指定 Java 版本
+> - `UTF-8`：避免中文乱码
+> - JUnit 依赖已包含，测试用
+
+---
+
+## ✅ 第五步：一键构建项目（核心命令）
+
+在项目根目录（`hello-maven`）打开终端（IDE 里有内置 Terminal）：
+
+### 1. 清理 + 编译 + 测试 + 打包
+```bash
+mvn clean package
+```
+
+> ✅ 你会看到控制台输出大量下载日志（第一次会慢），最后看到：
+```
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  15.234 s
+[INFO] Finished at: 2024-06-10T10:00:00+08:00
+[INFO] ------------------------------------------------------------------------
+```
+
+### 2. 查看输出
+项目根目录下会多出一个 `target/` 文件夹：
+
+```
+target/
+├── classes/           ← 编译后的 .class 文件
+├── test-classes/      ← 测试编译后的文件
+└── hello-maven-1.0-SNAPSHOT.jar  ← ✅ 你生成的可执行 JAR！
+```
+
+---
+
+## ✅ 第六步：运行你的 JAR 包
+
+### 方法一：用命令行运行
+```bash
+java -jar target/hello-maven-1.0-SNAPSHOT.jar
+```
+
+✅ 输出：
+```
+🎉 Hello Maven! 你成功构建了第一个 Maven 项目！
+```
+
+> ⚠️ 如果报错 `no main manifest attribute`，说明 JAR 没有声明主类 —— 我们下一步解决！
+
+---
+
+## ✅ 第七步：让 JAR 可执行（配置主类）
+
+### 修改 `pom.xml`，在 `<build><plugins>` 中添加 `maven-jar-plugin`：
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-jar-plugin</artifactId>
+    <version>3.3.0</version>
+    <configuration>
+        <archive>
+            <manifest>
+                <mainClass>com.example.App</mainClass>
+            </manifest>
+        </archive>
+    </configuration>
+</plugin>
+```
+
+> ✅ 完整 `<build>` 部分应如下：
+```xml
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.11.0</version>
+            <configuration>
+                <source>17</source>
+                <target>17</target>
+            </configuration>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.3.0</version>
+            <configuration>
+                <archive>
+                    <manifest>
+                        <mainClass>com.example.App</mainClass>
+                    </manifest>
+                </archive>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
+
+### 重新打包
+```bash
+mvn clean package
+```
+
+再次运行：
+```bash
+java -jar target/hello-maven-1.0-SNAPSHOT.jar
+```
+
+✅ 成功输出：
+```
+🎉 Hello Maven! 你成功构建了第一个 Maven 项目！
+```
+
+---
+
+## ✅ 第八步：（可选）配置阿里云镜像加速下载
+
+如果你在 `mvn clean package` 时下载很慢，配置阿里云镜像：
+
+### 找到 Maven 配置文件：
+- Windows：`%MAVEN_HOME%/conf/settings.xml`
+- macOS/Linux：`$MAVEN_HOME/conf/settings.xml`
+
+### 在 `<mirrors>` 标签内添加：
+```xml
+<mirror>
+    <id>aliyunmaven</id>
+    <mirrorOf>central</mirrorOf>
+    <name>阿里云公共仓库</name>
+    <url>https://maven.aliyun.com/repository/central</url>
+</mirror>
+```
+
+> 💡 如果 `<mirrors>` 不存在，就在 `<settings>` 标签内添加整个 `<mirrors>...</mirrors>` 块。
+
+---
+
+## ✅ 总结：你完成了什么？
+
+| 步骤 | 你做了什么 |
+|------|------------|
+| 1️⃣ | 安装并配置了 Maven |
+| 2️⃣ | 用 IDEA 创建了标准 Maven 项目 |
+| 3️⃣ | 编写了主程序 `App.java` |
+| 4️⃣ | 配置了 Java 17 和 UTF-8 编码 |
+| 5️⃣ | 用 `mvn clean package` 一键构建 |
+| 6️⃣ | 用 `java -jar` 运行了打包后的 JAR |
+| 7️⃣ | 配置了 `maven-jar-plugin` 让 JAR 可执行 |
+| 8️⃣ | （可选）加速了依赖下载 |
+
+---
+
+## 🎉 恭喜你！你已经掌握了 Maven 的完整开发流程！
+
+你现在可以：
+- 创建任何 Java 项目（Spring Boot、Web、工具类）
+- 管理第三方依赖（比如加个 `log4j`、`gson`）
+- 和团队协作（Maven 是企业标准）
+- 部署到服务器（打包后直接传 JAR 运行）
+
+---
+
+## 📦 下一步建议（你想学什么？）
+
+| 想继续学什么？ | 我可以帮你 |
+|----------------|------------|
+| ✅ 把这个项目改成 Spring Boot | 发你 `pom.xml` 和启动类 |
+| ✅ 加入日志（Log4j） | 教你加依赖和配置 |
+| ✅ 用 Maven 打成 WAR 部署 Tomcat | 教你 Web 项目结构 |
+| ✅ 用 GitHub + Maven 自动构建 | 教你 CI/CD |
+
+告诉我你想下一步做什么，我立刻为你定制教程 👇
