@@ -1,3 +1,10 @@
+---
+tags: []
+created: 2026-04-20
+updated: 2026-04-20
+status: ok
+---
+
 在 Linux 系统上，通过官方提供的软件源手动安装 Docker 。
 
 ### 🛠️ 第一步：准备工作

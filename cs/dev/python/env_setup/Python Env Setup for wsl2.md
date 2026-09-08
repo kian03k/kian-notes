@@ -1,3 +1,10 @@
+---
+tags: []
+created: 2026-04-19
+updated: 2026-04-19
+status: ok
+---
+
 # WSL 2 + Miniconda + PyCharm: The Ultimate Python Development Setup on Windows
 
 This guide provides a step-by-step, best-practice approach to setting up a professional Python development environment on Windows using WSL 2 (Windows Subsystem for Linux), Miniconda, and PyCharm. This combination delivers native Linux performance with the convenience of the Windows UI, making it the gold standard for Python data science and backend development.

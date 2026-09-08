@@ -1,3 +1,10 @@
+---
+tags: []
+created: 2026-09-08
+updated: 2026-09-08
+status: ok
+---
+
 # kian-notes
 
 个人知识库。总入口 + 目录总览，详细规则见 [cs/docs/结构规范.md](cs/docs/结构规范.md)。
@@ -14,9 +21,9 @@ kian-notes/
 │   ├── dev/             # 通用开发：cpp / python / web / git
 │   ├── docs/            # 文档规范：md/ 语法 + template/ 笔记模板 + 结构规范
 │   ├── infra/           # 基础设施：docker / MySQL
-│   ├── network/         # 网络数通（一级主题，数通资料归此）
 │   ├── os/              # 操作系统：linux / windows
 │   └── tools/           # 开发工具：JetBrains / 工具激活
+├── network/             # 网络数通（一级主题，与 cs 同级，数通资料归此）
 └── English/             # 英语（保留，内容多了再划分子目录）
 ```
 

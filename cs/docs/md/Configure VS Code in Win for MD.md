@@ -1,3 +1,10 @@
+---
+tags: []
+created: 2026-03-31
+updated: 2026-03-31
+status: ok
+---
+
 # VS Code Markdown 图片自动归类配置方案（Windows端）
 
 ## 文档说明

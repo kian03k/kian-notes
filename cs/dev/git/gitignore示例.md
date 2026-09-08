@@ -1,3 +1,10 @@
+---
+tags: []
+created: 2026-04-26
+updated: 2026-04-26
+status: ok
+---
+
 通用配置
 ```bash
 

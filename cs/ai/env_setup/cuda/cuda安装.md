@@ -1,3 +1,10 @@
+---
+tags: []
+created: 2026-04-12
+updated: 2026-04-12
+status: ok
+---
+
 ## cuda
 cuda_12.8.1_572.61_windows.exe
 ## cudnn

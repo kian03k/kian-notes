@@ -1,3 +1,10 @@
+---
+tags: []
+created: 2026-04-25
+updated: 2026-04-25
+status: ok
+---
+
 # 已装 Node + pnpm，旧 Vue2 + Yarn 项目启动完整教程
 我给你一套**零坑、直接照做**的步骤，完全适配你现在的环境（有 node、pnpm，项目是 yarn + vue2）。
 

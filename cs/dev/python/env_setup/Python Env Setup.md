@@ -1,3 +1,10 @@
+---
+tags: []
+created: 2026-04-25
+updated: 2026-04-25
+status: ok
+---
+
 
 # 虚拟机 Linux (Ubuntu/CentOS) Python 3.12 环境搭建完整指南 (基于 Anaconda)
 

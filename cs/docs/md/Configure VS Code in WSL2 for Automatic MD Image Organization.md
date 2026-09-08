@@ -1,3 +1,10 @@
+---
+tags: []
+created: 2026-03-15
+updated: 2026-03-15
+status: ok
+---
+
 # WSL2配置VS Code实现MD图片自动归类
 ## 完整配置尝试与问题排查文档
 

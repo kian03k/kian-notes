@@ -1,3 +1,10 @@
+---
+tags: []
+created: 2026-04-22
+updated: 2026-04-22
+status: ok
+---
+
 
 # Q1:端口占用问题
 Address already in use Port 5000 is in use by another program. Either identify and stop that program, or start the server with a different port. * Serving Flask app 'app.py' * Debug mode: off ERROR conda.cli.main_run:execute(142): `conda run python -m flask run` failed. (See above for error)每次启动后，关闭服务后提示，断开连接或者终止，不论选哪个pycharm都不能顺利的终止进程，再次启动后就提示端口被占用，每次都要sudo fuser -k 5000/tcp，这个为什么，可以解决吗？

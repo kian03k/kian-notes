@@ -1,3 +1,10 @@
+---
+tags: []
+created: 2026-04-23
+updated: 2026-04-23
+status: ok
+---
+
 ### ️ 场景：误在 `main` 分支开发，需同步至 `develop`
 
 ####  核心问题与目标
