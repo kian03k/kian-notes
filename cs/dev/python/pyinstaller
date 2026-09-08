@@ -1,0 +1,145 @@
+Flask + PyInstaller 桌面网页工具临时文件问题技术总结
+ 
+适用场景：将Flask网页程序打包为Windows exe，本地运行，支持文件上传；需要处理临时目录、Werkzeug上传落盘、打包兼容性问题。客观技术总结，不绑定LLD业务。
+ 
+1 获取程序运行根目录
+ 
+区分源码运行 / PyInstaller打包exe运行，获取程序所在目录，用于存放自定义临时文件、输出产物。
+ 
+python  
+from pathlib import Path
+import sys
+
+def get_app_dir():
+    if getattr(sys, "frozen", False):
+        # PyInstaller打包：返回exe所在目录
+        return Path(sys.executable).parent
+    # 源码运行：返回脚本所在目录
+    return Path(__file__).resolve().parent
+
+APP_DIR = get_app_dir()
+MY_TEMP_DIR = APP_DIR / "temp"
+MY_TEMP_DIR.mkdir(parents=True, exist_ok=True)
+ 
+ 
+- 业务自己生成的上传副本、导出文件，直接使用 MY_TEMP_DIR / "filename" ，使用Path完成读写，业务代码本身不需要使用tempfile库。
+- 注意：exe不能放置在 C:\Program Files 等系统受保护目录，否则无法创建子目录写入文件。
+ 
+2 Werkzeug 上传与 SpooledTemporaryFile 机制
+ 
+Werkzeug处理文件上传存在内存落盘逻辑：
+ 
+1. 默认阈值： UPLOAD_MAX_MEMORY_SIZE = 512KB ；
+2. 上传文件超过阈值，会使用 SpooledTemporaryFile ，将数据溢出写到磁盘临时文件；
+3.  SpooledTemporaryFile 没有对外提供自定义临时目录参数，内部调用标准库 tempfile.gettempdir() 获取临时目录；
+4. 该临时文件由Werkzeug内部创建、内部销毁，业务代码无法感知文件路径。
+ 
+风险
+ 
+如果使用系统默认临时目录，在企业域环境下会遇到以下问题：
+ 
+1. 域组策略：系统 %TEMP% 设置为只读、磁盘配额为0、重定向至不可访问网络路径；
+2. EDR/杀毒软件拦截系统临时目录的文件创建；
+3. 用户配置损坏， %TEMP% 指向不存在路径；
+现象：大文件上传抛出  no temporary directory  /  PermissionError 。开发环境复现困难，仅在部分终端触发。
+ 
+可选方案
+ 
+方案A：调高内存阈值，全部在内存处理
+ 
+python  
+from flask import Flask
+app = Flask(__name__)
+app.config["MAX_CONTENT_LENGTH"] = 100 * 1024 * 1024
+app.config["UPLOAD_MAX_MEMORY_SIZE"] = 100 * 1024 * 1024
+ 
+ 
+- 逻辑：文件小于阈值全部驻留内存，完全不触发SpooledTemporaryFile，不产生磁盘溢出临时文件；
+- 超过 MAX_CONTENT_LENGTH ，直接返回HTTP 413拒绝请求；
+- 优点：无需劫持标准库，代码逻辑简单；用户上传交互无变化；
+- 缺点：大文件会消耗内存；超大文件直接被拒绝。适合文件体积可控的场景。
+ 
+方案B：劫持进程内tempfile，重定向第三方库临时目录
+ 
+目的：让Werkzeug以及其他第三方库内部通过 tempfile 生成的临时文件，落到程序自定义目录，而不是系统temp。
+ 
+重要约束： tempfile 在import瞬间会缓存临时目录路径；必须先修改进程环境变量，再导入tempfile。只修改当前Python进程内环境变量，不会修改操作系统全局环境变量。
+ 
+python  
+import os
+# 修改当前进程的临时目录环境变量
+os.environ["TEMP"] = str(MY_TEMP_DIR)
+os.environ["TMP"] = str(MY_TEMP_DIR)
+
+# 必须在修改环境变量之后导入
+import tempfile as _tempfile_mod
+# 兜底，强制覆盖模块缓存变量
+_tempfile_mod.tempdir = str(MY_TEMP_DIR)
+ 
+ 
+- 优点：支持大文件上传落盘，第三方库隐式临时文件统一受控；不会依赖系统temp权限；
+- 缺点：有严格import顺序依赖，属于进程内劫持，代码可读性较差；仅对本Python进程生效。
+ 
+方案C：直接使用系统默认temp目录，不做任何劫持
+ 
+- 优点：代码最简，无任何劫持逻辑；
+- 缺点：依赖终端系统temp目录的读写权限；企业域环境存在上传失败风险；多程序共享系统临时目录，存在文件残留、冲突。适合自用、非域环境。
+ 
+3 PyInstaller  -w  无控制台窗口兼容
+ 
+使用 ‑w （windowed模式）打包exe，不弹出黑框控制台时， sys.stdout 、 sys.stderr 会被置为 None 。
+部分三方库、日志打印、异常栈输出会直接调用 .write() ，触发 AttributeError 导致程序静默闪退。
+ 
+兼容处理，成本很低，建议保留：
+ 
+python  
+import sys
+import os
+
+if sys.stdout is None:
+    sys.stdout = open(os.devnull, "w")
+if sys.stderr is None:
+    sys.stderr = open(os.devnull, "w")
+ 
+ 
+作用：输出重定向至空设备，不生成实际文件，规避stdout为None的崩溃。
+ 
+4 网页上传架构限制：无法获取浏览器本地真实文件路径
+ 
+设想：前端不传递二进制，仅把本地文件绝对路径传给后端，后端直接读取磁盘原文件。该方案在普通浏览器中不可行。
+ 
+1. 浏览器安全沙箱隔离： <input type="file"> 返回的是伪造路径（如 C:\fakepath\xxx.xlsx ），JS拿不到用户本地真实磁盘路径；
+2. 即使Flask服务与浏览器运行在同一台主机，网页JS沙箱权限与Python进程权限互相隔离，网页不能指挥Python进程随意读取本地磁盘。
+ 
+可行替代路线：
+ 
+1. 标准Web模式（现有）：浏览器上传文件二进制流；后端接收，保存到程序自定义临时目录作为副本再处理；
+2. 内嵌浏览器壳子（PyWebView/Electron）：文件选择逻辑放在Python主进程，拿到真实磁盘路径；前端HTML仅负责UI展示，通过IPC通信，不再使用网页 <input file> 上传。
+ 
+5 临时文件残留问题
+ 
+无论选择哪套方案：
+ 
+1. 业务代码手动生成在 MY_TEMP_DIR 下的文件，程序退出不会自动清理；建议程序启动时清空目录旧文件：
+ 
+python  
+for f in MY_TEMP_DIR.glob("*"):
+    try:
+        f.unlink()
+    except Exception:
+        pass
+ 
+ 
+2.  SpooledTemporaryFile 产生的临时文件，由Werkzeug内部自动管理销毁，业务代码无需处理。
+ 
+6 架构边界
+ 
+- Web外壳层：负责HTTP接收上传、下载响应、GUI托盘/窗口、打包兼容；不实现业务解析逻辑。
+- 业务逻辑层：独立模块，读取磁盘上的文件副本，完成解析处理；可以脱离Web直接被命令行调用。
+ 
+方案选型速查表
+ 
+方案 大文件落盘支持 劫持tempfile 风险 适合场景 
+A 内存阈值限制 ❌超过直接413 无 大文件被拒绝 文件体积可控 
+B 劫持tempfile重定向 ✅支持落盘 需要劫持，控制import顺序 代码逻辑绕 需要支持较大上传文件，规避系统目录权限问题 
+C 使用系统temp ✅支持落盘 无 域环境权限风险 个人使用，无域控终端
