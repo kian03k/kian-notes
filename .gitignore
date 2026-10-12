@@ -1,3 +1,6 @@
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
 /cs/tools/工具激活/jetbrains.md
+
+# WorkBuddy 内部数据（记忆 / 会话等），不纳入版本管理
+.workbuddy/
