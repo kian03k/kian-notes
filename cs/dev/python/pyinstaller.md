@@ -6,7 +6,8 @@ Flask + PyInstaller 桌面网页工具临时文件问题技术总结
  
 区分源码运行 / PyInstaller打包exe运行，获取程序所在目录，用于存放自定义临时文件、输出产物。
  
-python  
+python
+  
 from pathlib import Path
 import sys
 
@@ -47,7 +48,8 @@ Werkzeug处理文件上传存在内存落盘逻辑：
  
 方案A：调高内存阈值，全部在内存处理
  
-python  
+python
+  
 from flask import Flask
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 100 * 1024 * 1024
@@ -65,7 +67,8 @@ app.config["UPLOAD_MAX_MEMORY_SIZE"] = 100 * 1024 * 1024
  
 重要约束： tempfile 在import瞬间会缓存临时目录路径；必须先修改进程环境变量，再导入tempfile。只修改当前Python进程内环境变量，不会修改操作系统全局环境变量。
  
-python  
+python
+  
 import os
 # 修改当前进程的临时目录环境变量
 os.environ["TEMP"] = str(MY_TEMP_DIR)
@@ -92,7 +95,8 @@ _tempfile_mod.tempdir = str(MY_TEMP_DIR)
  
 兼容处理，成本很低，建议保留：
  
-python  
+python
+  
 import sys
 import os
 
@@ -122,7 +126,8 @@ if sys.stderr is None:
  
 1. 业务代码手动生成在 MY_TEMP_DIR 下的文件，程序退出不会自动清理；建议程序启动时清空目录旧文件：
  
-python  
+python
+  
 for f in MY_TEMP_DIR.glob("*"):
     try:
         f.unlink()
