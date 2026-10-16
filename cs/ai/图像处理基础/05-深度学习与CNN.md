@@ -310,6 +310,7 @@ torch.save(net, 'lenet5.pkl')
 | 2017 | **MobileNet** | 深度可分离卷积，轻量级，面向移动端 |
 
 > 记忆线索：**AlexNet（深层开端）→ VGG（更深）→ GoogLeNet（更宽/并行）→ ResNet（更稳，残差）→ 轻量化（MobileNet）**。
+> ResNet 的残差块**怎么用代码实现**，见 [[09-ResNet网络结构与手写实现]]。
 
 ---
 
