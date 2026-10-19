@@ -35,6 +35,7 @@ status: draft
 | [[03-面向对象]] | 类/继承/多态 · classmethod/staticmethod · @property · `__new__` · 自定义异常 | ★★★ |
 | [[04-数据处理]] | Excel(openpyxl) · CSV · 正则 · 异常 · numpy · matplotlib | ★★ |
 | [[05-Flask入门]] | 路由/模板/JSON 接口 · pymysql CRUD · ajax + ECharts · 全链路项目 | ★★★ |
+| [[06-实用脚本模式]] | 批量重命名 · 去重 · 目录体积 · watchdog · CSV 重排 · FFmpeg 调用 · 爬虫三件套 | ★★ |
 
 > 另：`env_setup/`（Windows / WSL2 环境搭建）、`pyinstaller.md`（打包）。
 
