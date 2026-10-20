@@ -18,7 +18,7 @@ kian-notes/
 ├── cs/                  # 计算机技术主区
 │   ├── ai/              # AI（env_setup / model / practice 按需建）
 │   ├── algorithm/       # 算法（新建）
-│   ├── dev/             # 通用开发：cpp / python / web / git
+│   ├── dev/             # 通用开发：cpp / python / web / git / java / architecture
 │   ├── docs/            # 文档规范：md/ 语法 + template/ 笔记模板 + 结构规范
 │   ├── infra/           # 基础设施：docker / MySQL
 │   ├── os/              # 操作系统：linux / windows
