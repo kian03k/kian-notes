@@ -24,6 +24,9 @@ kian-notes/
 │   ├── os/              # 操作系统：linux / windows
 │   └── tools/           # 开发工具：JetBrains / 工具激活
 ├── network/             # 网络数通（一级主题，与 cs 同级，数通资料归此）
+│   ├── index.md         # 网络区导航（协议 / 面试 / 故障排查）
+│   ├── 协议/            # 协议原理详解：OSPF / BGP / VXLAN-EVPN / RoCE / M-LAG / QoS / 华为设备
+│   ├── 面试/            # 面经与题库：总览 + 六份分级题库
 │   ├── 故障排查/        # 实际调测问题排查记录（ping -a 系列等）
 │   └── Windows路由配置.md
 └── English/             # 英语（保留，内容多了再划分子目录）
@@ -34,6 +37,7 @@ kian-notes/
 - 开发环境：[Python 环境搭建](cs/dev/python/env_setup/Python%20Env%20Setup.md)
 - Docker / MySQL：[cs/infra/docker](cs/infra/docker/MySQL/1.安装.md)
 - Linux：[os/linux](cs/os/linux/linux常用命令.md)
+- 数通导航：[network/index.md](network/index.md)（协议原理 / 面试题库 / 故障排查）
 - 数通故障排查：[network/故障排查](network/故障排查/CE%20交换机%20ICMP%20快回导致%20ping%20-a%20失败分析.md)
 - 写作规范与模板：[cs/docs](cs/docs/结构规范.md)
 
