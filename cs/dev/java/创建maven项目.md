@@ -1,5 +1,8 @@
-
-
+---
+tags: [java, maven, 构建工具]
+created: 2026-09-08
+updated: 2026-10-24
+status: ok
 ---
 
 ## 🚀 目标：用 Maven 构建一个 “Hello Maven!” 的 Java 项目

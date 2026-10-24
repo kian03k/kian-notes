@@ -7,6 +7,16 @@ status: ok
 
 #  CUDA安装教程
 
+## 0. 本文使用的安装包版本
+
+| 组件 | 文件名 |
+| --- | --- |
+| CUDA Toolkit | `cuda_12.8.1_572.61_windows.exe` |
+| cuDNN | `cudnn-windows-x86_64-8.9.7.29_cuda12-archive.zip` |
+
+> 版本必须与显卡驱动匹配，装之前先按 1.1 确认支持的 CUDA 版本。
+
+
 ## 1.1 查看适合的cuda版本
 
 ![img-01](assets/CUDA安装教程/img-01.png)

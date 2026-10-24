@@ -38,3 +38,14 @@ status: ok
 | `git rm --cached` + `.gitignore` + push | ✅ 还在 | ❌ 删除 |
 
 **一句话**：要删除云端文件必须执行 `git rm` 并 push；`.gitignore` 只防新文件，不删旧文件。
+
+---
+
+### 通用配置片段
+
+```gitignore
+# Windows 安全标记文件（网页下载的附件会带这个 NTFS 附加流）
+*Zone.Identifier
+```
+
+> 这类标记文件没有内容价值，直接忽略即可。
