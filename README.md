@@ -24,9 +24,9 @@ kian-notes/
 │   ├── os/              # 操作系统：linux / windows
 │   └── tools/           # 开发工具：JetBrains / 工具激活
 ├── network/             # 网络数通（一级主题，与 cs 同级，数通资料归此）
-│   ├── index.md         # 网络区导航（协议 / 面试 / 故障排查）
+│   ├── index.md         # 网络区导航（协议 / 题库 / 故障排查）
 │   ├── 协议/            # 协议原理详解：OSPF / BGP / VXLAN-EVPN / RoCE / M-LAG / QoS / 华为设备
-│   ├── 面试/            # 面经与题库：总览 + 六份分级题库
+│   ├── 题库/            # 题库与备考：总览 + 六份分级题库 + HCIP-811 索引
 │   ├── 故障排查/        # 实际调测问题排查记录（ping -a 系列等）
 │   └── Windows路由配置.md
 └── English/             # 英语（保留，内容多了再划分子目录）

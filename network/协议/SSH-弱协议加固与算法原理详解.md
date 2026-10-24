@@ -1,8 +1,15 @@
+---
+tags: [network, ssh, 安全加固, 协议]
+created: 2026-10-24
+updated: 2026-10-24
+status: ok
+---
+
 # SSH 弱协议加固与算法原理详解
 
 > **适用平台**：华为网络设备（NetEngine 8000 M6/M8、CE 交换机、USG 防火墙等，VRP8/V8 平台）
 > **文档说明**：本文档为两轮技术对话的总结留档，涵盖 SSH 弱协议删除建议与 SSH 四类算法原理详解
-> **参考来源**：华为官方命令参考（tech-kb）+ 内部知识库安全加固指导文档
+> **参考来源**：华为官方产品文档与安全加固指导材料
 
 ---
 
@@ -35,8 +42,6 @@ ssh server publickey ecc rsa x509v3-ssh-rsa rsa_sha2_256 rsa_sha2_512
 | blowfish_cbc | ❌ 删除 | Blowfish + CBC 双重弱 |
 
 > 官方原文："Parameters des_cbc, 3des_cbc, aes128_cbc, aes256_cbc, arcfour128, arcfour256, blowfish_cbc, aes192_cbc, and sm4_cbc in the command can be used only after the weak security algorithm function is enabled using the undo crypto weak-algorithm disable command."
->
-> 参考：[topic 21023](https://ipmastercowork.gts.huawei.com/tech-kb/topic/21023)（ssh server cipher 命令参考，NetEngine 8000 M6 V800R025C00SPC500）
 
 **建议新增**：`aes256_gcm`、`aes128_gcm`（安全等级最高的 GCM 模式，当前配置缺失）。
 
@@ -50,10 +55,6 @@ ssh server publickey ecc rsa x509v3-ssh-rsa rsa_sha2_256 rsa_sha2_512
 | sha1_96 | ❌ 删除 | SHA-1 截断 96 位，弱算法 |
 
 > 官方原文："For security purposes, you are advised to use the following HMAC algorithms: sha2_512_etm, sha2_256_etm, sha2_512, and sha2_256."
->
-> 参考：[topic 21027](https://ipmastercowork.gts.huawei.com/tech-kb/topic/21027)（ssh server hmac 命令参考）
->
-> 弱算法确认：[DOC1101173582](https://support.huawei.com/carrier/docview!docview?nid=DOC1101173582)（NetEngine A813 弱安全算法列表，SSH2.0 弱算法完整表）
 
 **建议新增**：`sha2_512`（当前配置缺失）。
 
@@ -74,8 +75,6 @@ ssh server publickey ecc rsa x509v3-ssh-rsa rsa_sha2_256 rsa_sha2_512
 | dh_group_exchange_sha1 | ❌ 删除 | SHA-1 基础，官方明确认定为弱安全算法 |
 
 > 官方原文："For security purposes, you are advised to use the curve25519_sha256, ecdh_sha2_nistp521, ecdh_sha2_nistp384, and ecdh_sha2_nistp256 key exchange algorithms. The algorithms specified by dh_group_exchange_sha1, dh_group1_sha1, and dh_group14_sha1 in this command are weak security algorithms and are not recommended."
->
-> 参考：[topic 21031](https://ipmastercowork.gts.huawei.com/tech-kb/topic/21031)（ssh server key-exchange 命令参考）
 
 ### 1.5 主机密钥算法（ssh server publickey）
 
@@ -88,8 +87,6 @@ ssh server publickey ecc rsa x509v3-ssh-rsa rsa_sha2_256 rsa_sha2_512
 | x509v3-ssh-rsa | ⚠️ 建议删除 | X.509 证书 + RSA，底层签名可能依赖 SHA-1；不在任何安全加固推荐列表中 |
 
 > 官方原文："The algorithms specified by dsa, rsa, and x509v3-ssh-rsa in this command are weak security algorithms and are not recommended."
->
-> 参考：[topic 21035](https://ipmastercowork.gts.huawei.com/tech-kb/topic/21035)（ssh server publickey 命令参考）
 
 ### 1.6 删除汇总
 
@@ -119,7 +116,6 @@ ssh server publickey rsa_sha2_512 rsa_sha2_256
 ssh server dh-exchange min-len 2048
 ```
 
-> 参考：[DOC1101785132](https://support.huawei.com/carrier/docview!docview?nid=DOC1101785132)（NE5000E V800R026 安全加固防攻击配置指导）、[EDOC1100269262](https://support.huawei.com/enterprise/zh/doc/EDOC1100269262)（聚合管理升级指导书）
 
 ### 1.8 验证命令
 
@@ -278,7 +274,6 @@ display alarm active | include secure
   |  客户端：解密 → 显示                         |
 ```
 
-> 参考：[DOC1101425079](https://support.huawei.com/carrierics/hwics.do?nid=DOC1101425079&lang=zh)（UNC 20.15.2 SSH 处理流程）
 
 ### 2.4 SSH 登录涉及的三类密钥
 
@@ -303,17 +298,11 @@ display alarm active | include secure
 
 ---
 
-## 参考文档
+## 依据说明
 
-| 编号 | 文档名称 | 引用内容 |
-|------|---------|---------|
-| [topic 21023](https://ipmastercowork.gts.huawei.com/tech-kb/topic/21023) | ssh server cipher 命令参考（NetEngine 8000 M6 V800R025C00SPC500） | 加密算法安全等级排序、弱算法列表 |
-| [topic 21027](https://ipmastercowork.gts.huawei.com/tech-kb/topic/21027) | ssh server hmac 命令参考 | HMAC 算法安全等级排序、弱算法列表 |
-| [topic 21031](https://ipmastercowork.gts.huawei.com/tech-kb/topic/21031) | ssh server key-exchange 命令参考 | 密钥交换算法安全等级排序、弱算法声明 |
-| [topic 21035](https://ipmastercowork.gts.huawei.com/tech-kb/topic/21035) | ssh server publickey 命令参考 | 主机密钥算法弱算法声明（dsa/rsa/x509v3-ssh-rsa） |
-| [DOC1101785132](https://support.huawei.com/carrier/docview!docview?nid=DOC1101785132) | NE5000E V800R026 安全加固防攻击配置指导 | 推荐安全算法配置、兼容性保留配置 |
-| [EDOC1100269262](https://support.huawei.com/enterprise/zh/doc/EDOC1100269262) | 聚合管理升级指导书 | 4 类算法安全加固推荐配置 |
-| [DOC1101173582](https://support.huawei.com/carrier/docview!docview?nid=DOC1101173582) | NetEngine A813 弱安全算法列表 | SSH2.0 协议弱算法完整表（sha2_256_96/ssh-rsa/hmac-sha1/3des_cbc/aes\*\_cbc/blowfish_cbc 等） |
-| [DOC1100875483](https://support.huawei.com/carrier/docview!docview?nid=DOC1100875483) | NE5000E 升级指导书 | 默认配置删除弱算法对照表、display security risk 告警机制 |
-| [DOC1101425079](https://support.huawei.com/carrierics/hwics.do?nid=DOC1101425079&lang=zh) | UNC 20.15.2 产品文档 | SSH 连接六阶段处理流程 |
-| [KB1100625233](https://support.huawei.com/) | 设备入网前漏扫弱算法处理案例 | 实际删除弱算法配置参考 |
+本文结论整理自华为官方产品文档与安全加固指导材料。核心支撑要点：
+
+- **弱算法判定**：官方命令参考对四类 `ssh server` 算法均有明确的安全等级排序与弱算法列表。`aes128_cbc`、`aes256_cbc`、`3des_cbc`、`blowfish_cbc`、`sha1`、`sha1_96`、`sha2_256_96`、`dh_group_exchange_sha1`、`rsa`（原始 ssh-rsa）等被明确列为弱安全算法，配置时需先使能弱算法功能。
+- **推荐算法**：加密推荐 GCM / CTR 模式（`aes256_gcm`、`aes128_gcm`、`aes256_ctr`、`aes128_ctr`）；HMAC 推荐完整长度的 `sha2_512`、`sha2_256`；密钥交换推荐 `curve25519_sha256` 与 `ecdh_sha2_nistp521/384/256`；主机密钥推荐 `rsa_sha2_512`、`rsa_sha2_256`。
+- **兼容性**：官方明确提示删除弱算法前必须确认 SSH 客户端支持新算法，否则会导致无法连接；需充分测试后再实施。
+- **协议流程**：SSH 建链依次为 TCP 握手 → 版本号协商 → 算法协商 → 密钥交换 → 用户认证 → 交互会话；四类算法分别作用于「算法协商」与「交互会话」两个阶段。
