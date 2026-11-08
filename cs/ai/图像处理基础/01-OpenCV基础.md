@@ -1,5 +1,5 @@
 ---
-tags: [cv, opencv, python, 图像处理]
+tags: [ai/opencv]
 created: 2026-10-12
 updated: 2026-10-12
 status: ok

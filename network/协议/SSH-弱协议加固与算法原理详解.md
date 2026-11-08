@@ -1,5 +1,5 @@
 ---
-tags: [network, ssh, 安全加固, 协议]
+tags: [network/ssh]
 created: 2026-10-24
 updated: 2026-10-24
 status: ok

@@ -1,3 +1,9 @@
+---
+tags: [markdown]
+created: 2026-10-13
+updated: 2026-10-13
+status: ok
+---
 \---  
 tags: [markdown, 语法]  
 created: 2026-10-13  

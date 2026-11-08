@@ -1,3 +1,9 @@
+---
+tags: [python]
+created: 2026-09-08
+updated: 2026-09-08
+status: ok
+---
 Flask + PyInstaller 桌面网页工具临时文件问题技术总结
  
 适用场景：将Flask网页程序打包为Windows exe，本地运行，支持文件上传；需要处理临时目录、Werkzeug上传落盘、打包兼容性问题。客观技术总结，不绑定LLD业务。

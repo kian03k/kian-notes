@@ -1,5 +1,5 @@
 ---
-tags: [vue, vue3, 组合式API, 前端]
+tags: [web/vue]
 created: 2026-10-19
 updated: 2026-10-19
 status: ok

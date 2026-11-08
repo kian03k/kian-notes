@@ -1,5 +1,5 @@
 ---
-tags: []
+tags: [linux, 安装配置]
 created: 2026-04-25
 updated: 2026-04-25
 status: ok

@@ -1,5 +1,5 @@
 ---
-tags: [network, bgp, 路由协议]
+tags: [network/bgp]
 created: 2026-10-21
 updated: 2026-10-21
 status: ok

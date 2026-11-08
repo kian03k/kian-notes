@@ -1,5 +1,5 @@
 ---
-tags: []
+tags: [git, 踩坑]
 created: 2026-04-19
 updated: 2026-04-19
 status: ok

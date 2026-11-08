@@ -1,5 +1,5 @@
 ---
-tags: [ai, 深度学习, cnn, pytorch]
+tags: [ai/pytorch]
 created: 2026-10-12
 updated: 2026-10-12
 status: ok

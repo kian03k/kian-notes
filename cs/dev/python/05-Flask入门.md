@@ -1,5 +1,5 @@
 ---
-tags: [python, flask, web, ajax, pymysql, echarts, 接口]
+tags: [python/flask]
 created: 2026-10-15
 updated: 2026-10-15
 status: draft

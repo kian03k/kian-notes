@@ -1,5 +1,5 @@
 ---
-tags: []
+tags: [markdown]
 created: 2026-03-31
 updated: 2026-03-31
 status: ok

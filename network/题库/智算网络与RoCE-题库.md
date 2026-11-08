@@ -1,5 +1,5 @@
 ---
-tags: [network, roce, 智算, 面试题库]
+tags: [network/roce, 题库]
 created: 2026-10-21
 updated: 2026-10-21
 status: ok

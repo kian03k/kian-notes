@@ -1,5 +1,5 @@
 ---
-tags: [docker, linux, centos]
+tags: [docker, 安装配置]
 created: 2026-10-12
 updated: 2026-10-12
 status: ok

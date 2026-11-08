@@ -1,5 +1,5 @@
 ---
-tags: [java, maven, 构建工具]
+tags: [java/maven]
 created: 2026-09-08
 updated: 2026-10-24
 status: ok

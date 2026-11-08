@@ -1,3 +1,9 @@
+---
+tags: [ai]
+created: 2026-10-12
+updated: 2026-10-12
+status: ok
+---
 # 如何搭建一个简单的 MCP Server
 
 > 本文从本项目 `MCP-SSE/main.py` 提炼而来，剥离全部业务逻辑，只保留"用 Python 搭一个能跑的 MCP Server"所需的最小骨架，供快速上手。

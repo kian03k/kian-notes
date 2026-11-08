@@ -1,5 +1,5 @@
 ---
-tags: [network, vxlan, evpn, 数据中心]
+tags: [network/vxlan, network/evpn]
 created: 2026-10-21
 updated: 2026-10-21
 status: ok

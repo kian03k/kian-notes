@@ -1,5 +1,5 @@
 ---
-tags: []
+tags: [windows, 踩坑]
 created: 2026-04-12
 updated: 2026-04-12
 status: ok

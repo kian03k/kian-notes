@@ -1,5 +1,5 @@
 ---
-tags: []
+tags: [docker, 安装配置, 踩坑]
 created: 2026-04-21
 updated: 2026-04-21
 status: ok

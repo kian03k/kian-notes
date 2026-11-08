@@ -1,5 +1,5 @@
 ---
-tags: [ai, cv, opencv, 机器学习, 深度学习, 学习笔记]
+tags: [ai, index]
 created: 2026-10-12
 updated: 2026-10-12
 status: ok

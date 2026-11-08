@@ -1,5 +1,5 @@
 ---
-tags: []
+tags: [docker, mysql, 踩坑]
 created: 2026-04-22
 updated: 2026-04-22
 status: ok

@@ -1,5 +1,5 @@
 ---
-tags: [network, mlag, 高可用, 数据中心]
+tags: [network/mlag]
 created: 2026-10-21
 updated: 2026-10-21
 status: ok

@@ -1,5 +1,5 @@
 ---
-tags: [架构, 工程化, 微服务, 项目结构]
+tags: [architecture]
 created: 2026-10-20
 updated: 2026-10-20
 status: ok

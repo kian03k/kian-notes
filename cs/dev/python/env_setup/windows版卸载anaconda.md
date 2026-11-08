@@ -1,5 +1,5 @@
 ---
-tags: []
+tags: [python, 安装配置]
 created: 2026-09-08
 updated: 2026-09-08
 status: ok

@@ -1,5 +1,5 @@
 ---
-tags: [ai, 深度学习, pytorch, resnet, 残差网络]
+tags: [ai/resnet, ai/pytorch]
 created: 2026-10-16
 updated: 2026-10-16
 status: ok

@@ -1,5 +1,5 @@
 ---
-tags: [android, fragment, activity, 界面开发]
+tags: [android]
 created: 2026-10-24
 updated: 2026-10-24
 status: ok

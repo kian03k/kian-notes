@@ -1,5 +1,5 @@
 ---
-tags: [network, ospf, 路由协议]
+tags: [network/ospf]
 created: 2026-10-21
 updated: 2026-10-21
 status: ok

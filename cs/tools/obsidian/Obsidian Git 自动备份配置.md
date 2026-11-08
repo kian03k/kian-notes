@@ -1,5 +1,5 @@
 ---
-tags: [obsidian, git, 插件配置, 备份]
+tags: [obsidian]
 created: 2026-10-24
 updated: 2026-10-24
 status: ok

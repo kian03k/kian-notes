@@ -1,5 +1,5 @@
 ---
-tags: [markdown, base64, 编码, 图片]
+tags: [markdown]
 created: 2026-09-08
 updated: 2026-09-08
 status: ok

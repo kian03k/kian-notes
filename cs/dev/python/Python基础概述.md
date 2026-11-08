@@ -1,5 +1,5 @@
 ---
-tags: [python, 基础, 思维导图]
+tags: [python]
 created: 2026-10-13
 updated: 2026-10-13
 status: draft

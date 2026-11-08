@@ -1,5 +1,5 @@
 ---
-tags: [linux, 命令, 基础]
+tags: [linux, 速查]
 created: 2026-04-22
 updated: 2026-10-24
 status: ok

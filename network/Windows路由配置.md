@@ -1,5 +1,5 @@
 ---
-tags: [network, windows, 路由]
+tags: [network]
 created: 2026-10-13
 updated: 2026-10-13
 status: ok

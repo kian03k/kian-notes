@@ -1,5 +1,5 @@
 ---
-tags: [network, qos, 优先级]
+tags: [network/qos]
 created: 2026-10-21
 updated: 2026-10-21
 status: ok

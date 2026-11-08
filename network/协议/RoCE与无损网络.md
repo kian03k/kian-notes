@@ -1,5 +1,5 @@
 ---
-tags: [network, roce, 智算, 无损网络]
+tags: [network/roce]
 created: 2026-10-21
 updated: 2026-10-21
 status: ok

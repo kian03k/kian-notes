@@ -1,5 +1,5 @@
 ---
-tags: [MySQL, 数据库, SQL]
+tags: [mysql]
 created: 2026-10-12
 updated: 2026-10-12
 status: ok

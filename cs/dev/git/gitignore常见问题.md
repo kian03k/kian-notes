@@ -1,5 +1,5 @@
 ---
-tags: []
+tags: [git]
 created: 2026-05-24
 updated: 2026-05-24
 status: ok

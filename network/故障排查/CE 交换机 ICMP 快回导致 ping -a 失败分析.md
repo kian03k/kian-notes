@@ -1,5 +1,5 @@
 ---
-tags: [network, 故障排查, ICMP, CE交换机, 快回]
+tags: [network/icmp, 踩坑]
 created: 2026-10-13
 updated: 2026-10-13
 status: ok

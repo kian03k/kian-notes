@@ -1,5 +1,5 @@
 ---
-tags: []
+tags: [index]
 created: 2026-09-08
 updated: 2026-10-24
 status: ok
@@ -113,3 +113,52 @@ kian-notes/
 3. **清一次的动作**：先搜关键词看有没有同主题 → 有就**追加**进已有笔记，没有才新建（新建时至少加一条 `[[双链]]`）→ 确认无引用后删除原件。
 4. **从公司电脑搬来的资料，入库前必做脱敏检查**：删除内部文档编号（`EKB` / `DOC` / `EDOC` / `topic`）、内网域名与链接、项目代号、客户名称、真实 IP 与设备序列号。能在外网直接访问的公开链接可以保留。
 5. `_inbox/` 内不建子目录，保持浅平。
+
+### 七、标签规范
+
+**标签只做文件夹做不到的事。** 当前 110 篇用 43 个标签，平均每篇 1.6 个，分三层。
+
+#### 1. 领域标签（英文小写，与目录对应）
+
+`network` `python` `docker` `git` `mysql` `linux` `windows` `ai` `web` `cpp` `java` `android` `markdown` `obsidian` `jetbrains` `algorithm` `architecture` `english` `personal` `inbox`
+
+价值在于**跨目录聚合**：`#docker` 能一次捞出 `infra/docker/` 三个子目录加 `infra/database/` 里沾容器的笔记，`#mysql` 能同时命中 `infra/database/MySQL/` 和 `infra/docker/MySQL/`。单目录内独一份的领域标签（如 `#cpp`）属于可接受的冗余。
+
+#### 2. 技术点子标签（`父/子` 形式）
+
+- 数通：`network/bgp` `network/ospf` `network/vxlan` `network/evpn` `network/mlag` `network/roce` `network/qos` `network/ssh` `network/vrrp` `network/icmp` `network/ecmp`
+- AI：`ai/opencv` `ai/pytorch` `ai/resnet` `ai/yolo`
+- 其他：`web/vue` `java/maven` `python/flask`
+
+规则：
+- **只在同一技术点跨目录出现时才建**（如 `network/bgp` 同时命中 `协议/BGP-原理详解` 和 `题库/BGP-题库`）。
+- **打了子标签就不再打父标签**。Obsidian 里 `tag:#network` 会自动带出所有 `network/*` 子标签（官方 0.10.3 起的行为），父标签重复打等于白占位置。
+- 子标签引用时写全路径：`tag:#network/bgp`。
+
+#### 3. 属性标签（中文，横切所有目录）
+
+| 标签 | 含义 | 用途 |
+|------|------|------|
+| `踩坑` | 亲自排查/踩过并解决了 | 这是最值钱的一类，将来再遇到能直接复用 |
+| `速查` | 命令、语法、参数清单 | 集中一处备查 |
+| `题库` | 考试、面试题 | 与 `network/*` 正交 |
+| `安装配置` | 装完就废的环境搭建 | 标记出来，将来批量评估哪些该归档 |
+| `归档` | 旧版本内容，留档备查 | 配合 `_archive/` 使用 |
+| `index` | 导航页 | 快速定位所有索引入口 |
+
+#### 明确不打的标签
+
+- **关键词**（`轮廓`、`loss曲线`、`迭代器`、`参数传递`）：全文搜索就能命中，打标签是重复劳动，还多一份维护成本。
+- **同义词**（`排障`/`故障排查`、`OOP`/`面向对象`、`yolo`/`YOLO`）：一条概念只允许一个写法。
+- **状态**（`draft`/`ok`）：用 frontmatter 的 `status` 字段，不要和标签双份维护。
+
+#### 常用检索写法
+
+| 目的 | 搜索框输入 |
+|------|-----------|
+| 某领域全部（含子标签） | `tag:#network` |
+| 某个具体技术点 | `tag:#network/bgp` |
+| 交集 | `tag:#python tag:#速查` |
+| 排除 | `tag:#踩坑 -tag:#归档` |
+| 找会过期的笔记 | `tag:#安装配置` |
+| 表格化浏览 | Bases 里新建 base，用 tags 条件过滤 |
