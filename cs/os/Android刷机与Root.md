@@ -1,5 +1,10 @@
 ---
-tags: [android, 刷机, root, 三星, 存档]
+tags:
+  - android
+  - 刷机
+  - root
+  - 三星
+  - 存档
 created: 2026-10-24
 updated: 2026-10-24
 status: ok
