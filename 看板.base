@@ -1,0 +1,62 @@
+filters:
+  and:
+    - file.ext == "md"
+properties:
+  tags:
+    displayName: 分类
+  created:
+    displayName: 记录日期
+  status:
+    displayName: 状态
+views:
+  - type: table
+    name: 踩坑记录
+    filters:
+      and:
+        - file.hasTag("踩坑")
+    order:
+      - file.name
+      - created
+      - tags
+  - type: table
+    name: 环境搭建
+    filters:
+      and:
+        - file.hasTag("安装配置")
+    order:
+      - file.name
+      - created
+      - tags
+  - type: table
+    name: 题库
+    filters:
+      and:
+        - file.hasTag("题库")
+    order:
+      - file.name
+      - created
+      - tags
+  - type: table
+    name: 待整理
+    filters:
+      and:
+        - or:
+            - file.hasTag("inbox")
+            - status == "draft"
+    order:
+      - file.name
+      - created
+      - status
+      - tags
+  - type: table
+    name: 全部笔记
+    order:
+      - file.name
+      - created
+      - status
+      - tags
+  - type: table
+    name: 测试
+    filters:
+      and:
+        - file.hasTag("ai")
