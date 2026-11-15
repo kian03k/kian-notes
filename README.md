@@ -34,7 +34,7 @@ kian-notes/
 
 ## 常用入口
 
-- Python：[cs/dev/python/index.md](cs/dev/python/index.md)（语言基础 + 环境搭建）
+- Python：[cs/dev/python/index.md](cs/dev/python/index.md)（教程 / 数据处理 / 打包 / 环境）
 - Git：[cs/dev/git/index.md](cs/dev/git/index.md)（配置 + 场景化操作）
 - 开发环境：[Python 环境搭建](cs/dev/python/env_setup/Python%20Env%20Setup.md)
 - Docker / MySQL：[cs/infra/docker](cs/infra/docker/MySQL/1.安装.md)
@@ -70,6 +70,21 @@ kian-notes/
 理由：目录层级是为了「减少一次浏览的选项数量」，不是为了分类而分类。4 层目录里只躺 1 个文件（反例：`cs/os/windows/browser_apps/optimization_config/Q&A.md`），点进去还得记住路径，比平铺更难找。
 
 例外：按「工具」或「职能」天然独立的目录（`tools/obsidian/`、`docs/template/`、`xxx/assets/`）不受此限，即便只有 1 篇也合理。
+
+例外二：**顶层分类目录允许先建后长**。按技术方向划分的一级子目录（如 `dev/python/data/`、`dev/python/packaging/`）即使当前只有 1–2 篇也可以建——它承担的是长期分类锚点的作用，新笔记直接落进去即可。但同一分类内部**不足 3 篇时不得再往下细分**，避免出现「锚点里套空壳」。
+
+以 `cs/dev/python/` 为例：
+
+```txt
+python/
+├── index.md      # 导航
+├── guide/        # 体系化教程（01~06 按序读）
+├── data/         # 数据处理专题
+├── packaging/    # 打包分发
+└── env_setup/    # 环境搭建
+```
+
+判断标准是「这篇该放哪个桶」，而不是「这个桶够不够 3 篇」。
 
 ### 二、index.md 触发条件
 
