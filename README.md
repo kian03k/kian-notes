@@ -35,7 +35,7 @@ kian-notes/
 ## 常用入口
 
 - Python：[cs/dev/python/index.md](cs/dev/python/index.md)（教程 / 数据处理 / 打包 / 环境）
-- Git：[cs/dev/git/index.md](cs/dev/git/index.md)（配置 + 场景化操作）
+- Git：[cs/dev/git/index.md](cs/dev/git/index.md)（全链路教程 + 配置 + 场景化操作）
 - 开发环境：[Python 环境搭建](cs/dev/python/env_setup/Python%20Env%20Setup.md)
 - Docker / MySQL：[cs/infra/docker](cs/infra/docker/MySQL/1.安装.md)
 - Linux：[os/linux](cs/os/linux/linux常用命令.md)
@@ -92,7 +92,7 @@ python/
 - 12 篇以内靠目录浏览即可，不为索引而索引。
 - `index.md` 只做链接导航（按子目录或主题分组），不写长篇内容。
 - 计数口径：目录树内所有 `.md`，不含 `assets/` 资源、不含 `_archive/`、不含 `index.md` 自身。
-- **当前已建索引**：`cs/dev/git/`（13 篇）、`cs/dev/python/`（15 篇）、`cs/ai/图像处理基础/`（10 篇，自带完整学习路线）、`network/`。接近阈值的：`network/题库/`（10 篇）、`network/协议/`（8 篇）。
+- **当前已建索引**：`cs/dev/git/`（20 篇）、`cs/dev/python/`（15 篇）、`cs/ai/图像处理基础/`（10 篇，自带完整学习路线）、`network/`。接近阈值的：`network/题库/`（10 篇）、`network/协议/`（8 篇）。
 
 ### 三、资源（图片/附件）规则
 
