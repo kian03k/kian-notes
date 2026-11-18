@@ -1,15 +1,14 @@
 ---
-tags: [python/flask]
+tags: [python, web]
 created: 2026-10-15
-updated: 2026-10-15
-status: draft
-source: D:/Projects/Python/old/Python/{flaskProject, py_home, homework, MyHTML, Project/flaskProject}
+updated: 2026-11-18
+status: ok
 ---
 
-# Flask 入门：从 Hello World 到"前端 + 数据库 + 图表"全链路
+# Flask 全链路：从骨架到前端 + 数据库 + 图表
 
-> 原练习有 5~6 个 Flask 小项目，本质是同一条链路的反复打磨：**路由 → 请求 → 数据库 → JSON → 前端渲染**。
-> 这里把它整理成一条"从零到能跑"的路线。前置：[[01-速查手册]]、[[03-面向对象]]。
+> **适用场景**：要把一个 Python 脚本包成 Web 服务、给前端提供 JSON 接口、或做一个带页面和图表的小系统。
+> 这条链路是：**路由 → 请求取值 → 返回（模板/JSON）→ 数据库 → 前端联调**，每一步都有可抄的骨架。
 
 ---
 
@@ -171,7 +170,7 @@ conn.commit()                                   # ← 忘了就白改了
 ```
 
 > `DictCursor` 让每行直接是字典，前端 JSON 化更顺——原项目几乎都这么用。
-> 完整 CRUD 见 [[#6-综合实战学生管理系统]]。
+> 完整 CRUD 见 [[#6. 综合实战：学生管理系统]]。
 
 ---
 
@@ -301,4 +300,8 @@ CORS(app)                            # 允许跨域，Vue/React 前端才连得�
 | 不要重启 | `app.run(debug=True)` |
 | 上线 | 别用 `app.run`，用 `gunicorn`/`uwsgi` |
 
-> **延伸**：`old/Flask/app.py`（390 行）是 WSL `music-platform/music-server-flask/` 的**早期练习版**——同一套"用户管理 + 菜单权限 + 数据看板"接口，后者已重构成 233 行 + JWT。想学"真实项目怎么组织 Flask 后端"，看那个更值。
+> **延伸**：真实项目里的 Flask 后端通常要把这套拆成多文件（蓝图/`models.py`/`services.py`），并加上 JWT 鉴权。本库暂无对应笔记，做到那个规模时再补。
+
+---
+
+回到：[[cs/dev/python/index|Python 导航]]

@@ -34,9 +34,9 @@ kian-notes/
 
 ## 常用入口
 
-- Python：[cs/dev/python/index.md](cs/dev/python/index.md)（教程 / 日志专题 / 数据处理 / 打包 / 环境）
+- Python：[cs/dev/python/index.md](cs/dev/python/index.md)（六层：语言基础 / 数据处理 / 文件操作 / 网络 / 日志异常 / 环境交付）
 - Git：[cs/dev/git/index.md](cs/dev/git/index.md)（全链路教程 + 配置 + 场景化操作）
-- 开发环境：[Python 环境搭建](cs/dev/python/env_setup/Python%20Env%20Setup.md)
+- 开发环境：[Python 环境搭建](cs/dev/python/env/setup/Python%20Env%20Setup.md)
 - Docker / MySQL：[cs/infra/docker](cs/infra/docker/MySQL/1.安装.md)
 - Linux：[os/linux](cs/os/linux/linux常用命令.md)
 - 数通导航：[network/index.md](network/index.md)（协议原理 / 题库 / 故障排查）
@@ -65,23 +65,37 @@ kian-notes/
 
 #### 目录粒度原则
 
-**一个目录里不足 3 篇笔记，就不要单独建目录**，文件直接放在上级目录里。
+**目录层级按语义需要决定，不用篇数卡。** 一个目录里只躺 1 篇也完全可以，只要它确实是一个独立分类；反过来，为了「凑够 3 篇」把不相干的内容塞进同一个桶，比空壳目录更糟。
 
-理由：目录层级是为了「减少一次浏览的选项数量」，不是为了分类而分类。4 层目录里只躺 1 个文件（反例：`cs/os/windows/browser_apps/optimization_config/Q&A.md`），点进去还得记住路径，比平铺更难找。
+唯一要避免的是**纯为分类而分类的深嵌套**——4 层目录里只躺 1 个文件（反例：`cs/os/windows/browser_apps/optimization_config/Q&A.md`），点进去还得记住路径，比平铺更难找。判断依据是「这个目录名能不能当检索词」，不是「这个桶里够不够几篇」。
 
-例外：按「工具」或「职能」天然独立的目录（`tools/obsidian/`、`docs/template/`、`xxx/assets/`）不受此限，即便只有 1 篇也合理。
+例外：按「工具」或「职能」天然独立的目录（`tools/obsidian/`、`docs/template/`、`xxx/assets/`）即便只有 1 篇也合理。
 
-例外二：**顶层分类目录允许先建后长**。按技术方向划分的一级子目录（如 `dev/python/data/`、`dev/python/packaging/`）即使当前只有 1–2 篇也可以建——它承担的是长期分类锚点的作用，新笔记直接落进去即可。但同一分类内部**不足 3 篇时不得再往下细分**，避免出现「锚点里套空壳」。
+例外二：**分类目录一律允许先建后长**。按技术方向或场景划分的子目录（如 `dev/python/excel/`、`dev/python/packaging/`）即使当前只有 1 篇也可以建——它承担的是长期分类锚点的作用，新笔记直接落进去即可。
 
-以 `cs/dev/python/` 为例：
+以 `cs/dev/python/` 为例（**六个顶层分类，按「处理的是什么对象」划分**）：
 
 ```txt
 python/
-├── index.md      # 导航
-├── guide/        # 体系化教程（01~06 按序读）
-├── data/         # 数据处理专题
-├── packaging/    # 打包分发
-└── env_setup/    # 环境搭建
+├── index.md      # 索引（我要干什么 → 看哪篇）
+├── guide/        # 语言本身怎么写
+│   ├── 01~04     # 主干，按序读（速查/函数进阶/面向对象/循环跳出）
+│   └── advanced/ # 进阶深化（装饰器与 wraps / 参数传递 / 迭代器协议）
+├── data/         # 打开某种内容 → 解析 → 改写 → 出图
+│   ├── index.md  # 16 篇，超 12 篇阈值，自带子索引
+│   ├── pandas/   # 表格数据处理（01~06 连号）
+│   ├── excel/    # Excel / CSV 文件读写
+│   ├── text/     # 字符串与正则
+│   ├── charts/   # 出图
+│   └── media/    # 音视频处理（FFmpeg）
+├── files/        # 对文件本身动手（改名/去重/体积/监听）
+├── web/          # 跟浏览器和 HTTP 打交道（Flask + 抓取）
+├── quality/      # 出错时看得见、运行时扛得住
+│   ├── logging/    # 日志接入（00 总览 + 01~04）
+│   └── exceptions/ # 异常处理
+└── env/          # 从装环境到打包交出去
+    ├── setup/      # 环境搭建（Windows / WSL2 / Linux）
+    └── packaging/  # 打包分发
 ```
 
 判断标准是「这篇该放哪个桶」，而不是「这个桶够不够 3 篇」。
@@ -92,7 +106,7 @@ python/
 - 12 篇以内靠目录浏览即可，不为索引而索引。
 - `index.md` 只做链接导航（按子目录或主题分组），不写长篇内容。
 - 计数口径：目录树内所有 `.md`，不含 `assets/` 资源、不含 `_archive/`、不含 `index.md` 自身。
-- **当前已建索引**：`cs/dev/git/`（20 篇）、`cs/dev/python/`（20 篇）、`cs/ai/图像处理基础/`（10 篇，自带完整学习路线）、`network/`。接近阈值的：`network/题库/`（10 篇）、`network/协议/`（8 篇）。
+- **当前已建索引**：`cs/dev/python/`（42 篇）、`cs/dev/git/`（20 篇）、`cs/ai/图像处理基础/`（10 篇，自带完整学习路线）、`network/`。接近阈值的：`network/题库/`（10 篇）、`network/协议/`（8 篇）。
 
 ### 三、资源（图片/附件）规则
 
@@ -192,7 +206,7 @@ python/
 **2. 归位。** 按第二节目录职责落位。
 
 - 先搜关键词查重，同主题**追加**到已有笔记，不新建。
-- 不足 3 篇的目录不单独建目录。
+- 目录按「这个桶名能不能当检索词」判断，不按篇数判断。
 - 落库后从 `_inbox/` 删除原件；新笔记至少加一条 `[[双链]]`。
 
 **3. 行文。** 正式、书面化。

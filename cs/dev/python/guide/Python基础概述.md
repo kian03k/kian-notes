@@ -28,16 +28,20 @@ status: draft
 
 ## 系列笔记（2026-10-15 从 `D:\Projects\Python\old` 提炼）
 
+> **语言基础**留在本目录，按 01 → 04 顺序读；**场景方案**按「处理什么对象」分到 `data/`、`files/`、`web/`、`quality/`、`env/` 五个顶层目录，需要时直接查。两者互补：这里讲清语法，那边给出能抄的模板。
+
 | 篇 | 内容 | 难度 |
 | --- | --- | --- |
 | [[01-速查手册]] | 变量/流程/数据结构/函数/推导式/内置函数/踩坑清单 | ★ |
 | [[02-函数进阶]] | 递归 · 高阶函数 · 闭包 · 装饰器 · **深浅拷贝** | ★★★ |
 | [[03-面向对象]] | 类/继承/多态 · classmethod/staticmethod · @property · `__new__` · 自定义异常 | ★★★ |
-| [[04-数据处理]] | Excel(openpyxl) · CSV · 正则 · 异常 · numpy · matplotlib | ★★ |
-| [[05-Flask入门]] | 路由/模板/JSON 接口 · pymysql CRUD · ajax + ECharts · 全链路项目 | ★★★ |
-| [[06-实用脚本模式]] | 批量重命名 · 去重 · 目录体积 · watchdog · CSV 重排 · FFmpeg 调用 · 爬虫三件套 | ★★ |
+| [[04-for循环跳出]] | if 分支跳过 · continue · break · for-else 的适用边界 | ★ |
+| 语言进阶 → | `advanced/`：装饰器与 `functools.wraps`、`*args`/`**kwargs`、迭代器协议与抽象基类 | ★★★ |
+| 数据处理 → | `data/`：Excel/CSV、正则、numpy、出图、音视频，明细见 [[cs/dev/python/data/index\|data 索引]] | ★★ |
+| Web 与抓取 → | [[cs/dev/python/web/01-Flask全链路\|web/01-Flask全链路]]，抓取见 `web/02-网页抓取` | ★★★ |
+| 文件与工程 → | 文件整理在 `files/`；日志与异常在 `quality/`；环境与打包在 `env/` | ★★ |
 
-> 另：`env_setup/`（Windows / WSL2 环境搭建）、`pyinstaller.md`（打包）。
+> 另：`env/setup/`（Windows / WSL2 环境搭建）、`env/packaging/`（打包）。
 
 ## 待办
 

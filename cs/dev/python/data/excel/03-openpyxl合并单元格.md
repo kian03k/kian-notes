@@ -102,5 +102,9 @@ def find_merge_residuals(path):
 
 ## 相关
 
-- [[04-数据处理]]
+- [[01-Excel读写]]：openpyxl / pandas 的选型与基础读写
 - 结构说明：`.xlsx` 本质是 ZIP 包，工作表数据在 `xl/worksheets/sheetN.xml`，合并关系记于 `<mergeCells>`，单元格值记于 `<c r="坐标">`。排查底层问题时改后缀为 `.zip` 解压即可。
+
+---
+
+上一篇：[[02-CSV读写]]　回到：[[cs/dev/python/index|Python 导航]]
