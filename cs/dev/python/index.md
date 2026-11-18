@@ -7,7 +7,7 @@ status: ok
 
 # Python · 导航
 
-> `cs/dev/python/` 目录索引。体系化教程在 `guide/`，具体问题按主题归入 `data/`、`packaging/`，环境搭建在 `env_setup/`。
+> `cs/dev/python/` 目录索引。体系化教程在 `guide/`，日志专题在 `logging/`，具体问题按主题归入 `data/`、`packaging/`，环境搭建在 `env_setup/`。
 
 ## guide/ — 体系化教程
 
@@ -22,6 +22,18 @@ status: ok
 | [[04-数据处理]] | Excel、CSV、正则、异常、numpy、matplotlib |
 | [[05-Flask入门]] | 从 Hello World 到前端 + 数据库 + 图表全链路 |
 | [[06-实用脚本模式]] | 常见自动化脚本套路 |
+
+## logging/ — 日志专题
+
+自成体系，从 [[00-总览]] 的场景索引进入。
+
+| 笔记 | 内容 |
+| --- | --- |
+| [[00-总览]] | 场景索引、30 秒核心概念、选型铁律 |
+| [[01-快速上手]] | 单文件脚本 basicConfig 三步接入、format 占位符速查 |
+| [[02-标准框架]] | 多模块项目 setup_logging()、getLogger(__name__) 原理、4 代方案演进 |
+| [[03-进阶配置]] | 日志轮转、控制台/文件分级、模块级控级、dictConfig、远程采集 |
+| [[04-特殊场景手册]] | 异常记录姿势、日志重复输出、旧方案迁移、单测 mock |
 
 ## data/ — 数据处理
 
@@ -52,5 +64,6 @@ status: ok
 
 - **零基础起步**：`guide/Python基础概述` 看图建立框架 → `01` 速查 → `02`~`03` 补语法深度
 - **要干活**：直接跳 `04-数据处理` 和 `06-实用脚本模式`；遇到具体问题再查 `data/`
+- **要接日志**：脚本看 `logging/01`，项目直接抄 `logging/02` 的 setup_logging()
 - **配环境**：Windows 开发选 `Python Env Setup for wsl2`，纯 Linux 服务器选 `Python Env Setup`
 - **要交付**：`packaging/pyinstaller` 打独立可执行文件
