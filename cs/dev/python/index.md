@@ -1,17 +1,18 @@
 ---
 tags: [python, index]
 created: 2026-10-24
-updated: 2026-11-18
+updated: 2026-11-19
 status: ok
 ---
 
 # Python · 索引
 
-> 六个顶层分类，按「处理的是什么对象」划分：
+> 七个顶层分类，按「处理的是什么对象」划分：
 > - `guide/` — 语言本身怎么写（按序读）
 > - `data/` — 打开某种内容 → 解析 → 改写 → 出图
-> - `files/` — 对文件本身动手（改名 / 去重 / 监听）
+> - `files/` — 对文件本身动手（改名 / 去重 / 监听 / 路径操作）
 > - `web/` — 跟浏览器和 HTTP 打交道
+> - `gui/` — 做桌面窗口：控件、布局、进度反馈
 > - `quality/` — 出错时看得见、运行时扛得住
 > - `env/` — 从装环境到打包交出去
 
@@ -24,20 +25,32 @@ status: ok
 | 读 Excel 算分写回、两张表按列对号入座 | [[01-Excel读写]] |
 | 读写 CSV、大文件逐行处理 | [[02-CSV读写]] |
 | 换 CSV 列序、改标签取值 | [[04-CSV列重排与映射]] |
+| 导出的 CSV 在 Excel 里长数字变科学计数法 / 中文乱码 | [[05-CSV与Excel互操作]] |
 | 调单元格格式、合并单元格 | [[03-openpyxl合并单元格]] |
+| 读存 .pkl / .pkl.gz 数据文件 | [[01-pkl与gzip]] |
 | 清洗字符串、去空白、拆字段 | [[01-字符串清理]] |
 | 批量替换、提取数字/片段 | [[02-正则速查与替换]] → [[03-正则匹配对象]] |
 | 把混杂文本按块切开 | [[04-正则切分配置块]] |
 | 画图出 PNG、中文变方块 | [[01-matplotlib出图]] |
 | 转音频、裁视频、抽音轨 | [[01-调用FFmpeg]] |
 | 批量改名、去重、看目录谁最占地方、监听目录 | `files/` |
+| 拼路径、取文件名、比较两个路径是否同一个 | [[01-pathlib速查]] |
+| 递归找某类文件、按文件名规则筛选 | [[02-文件匹配与遍历]] |
+| 建目录、清空目录但保留目录本身 | [[03-目录创建与清空]] |
+| 脚本找不到自己的 config/Output、打包后路径失效 | [[04-脚本路径定位与打包资源]] |
+| 路径逻辑到处都是、该不该统一搞个 config.py | [[05-路径逻辑的组织方式]] |
 | 包一个 Web 服务 / 给前端供接口 | [[01-Flask全链路]] |
 | 抓网页正文 / 动态页 | [[02-网页抓取]] |
+| 自动化被识别成机器人、弹验证码 | [[03-Selenium反检测配置]] |
+| 做桌面程序：窗口、按钮、进度条、实时曲线 | [[01-PyQt入门与核心机制]] |
+| 点一下跑几十秒的活，界面要显示进度且不卡死 | [[02-长任务进度反馈]] |
 | 异常捕获、raise、记录堆栈 | [[01-try-except完全指南]] |
 | 接日志、日志重复输出 | `quality/logging/` |
 | 给函数加日志/计时/重试/权限 | `guide/advanced/` |
 | 打包成 exe | [[pyinstaller]] |
 | 装环境、配 conda | `env/setup/` |
+| 该用 venv 还是 conda、装完库还报找不到模块 | [[虚拟环境venv与conda]] |
+| import 时莫名跑了代码 / 循环导入 / 包内脚本跑不起来 | [[04-模块导入机制与副作用]] |
 
 ## guide/ — 语言基础
 
@@ -58,22 +71,26 @@ status: ok
 | [[01-装饰器基础与functools.wraps]] | 接 [[02-函数进阶]] 装饰器节：`functools.wraps`、三层嵌套、日志/权限/异常三类实战 |
 | [[02-参数传递与全局装饰器]] | `*args`/`**kwargs` 打包解包、项目级全局装饰器集中组织 |
 | [[03-迭代器协议与抽象基类]] | 接 [[03-面向对象]] 魔术方法节：`__iter__` 协议、`NotImplementedError` 契约、MRO |
+| [[04-模块导入机制与副作用]] | 接 [[01-速查手册]] 的 `__main__` 一行：导入即执行、sys.modules 缓存、惰性加载、循环导入、`python -m` 与直接运行的区别 |
 
 ## data/ — 数据与内容处理
 
-共 16 篇，五个子目录。**篇目明细见 [[cs/dev/python/data/index|data 目录索引]]**。
+共 18 篇，六个子目录。**篇目明细见 [[cs/dev/python/data/index|data 目录索引]]**。
 
 | 子目录 | 内容 |
 | --- | --- |
 | `data/pandas/` | 表格数据处理，6 篇连号（01→06） |
-| `data/excel/` | Excel / CSV 文件读写，4 篇 |
+| `data/excel/` | Excel / CSV 文件读写与互操作，5 篇 |
 | `data/text/` | 字符串与正则，4 篇 |
 | `data/charts/` | 出图，1 篇 |
 | `data/media/` | 音视频处理（FFmpeg），1 篇 |
+| `data/serialization/` | pickle 与压缩，1 篇 |
 
 ## files/ — 文件与目录操作
 
-四篇是同一件事的四步：看完体积 → 去重 → 改名 → 监听目录自动跑。
+上层是四个整理任务（看完体积 → 去重 → 改名 → 监听目录自动跑），底下的 `paths/` 是它们共用的路径手法。
+
+**整理任务**
 
 | 笔记 | 内容 |
 | --- | --- |
@@ -82,12 +99,30 @@ status: ok
 | [[03-目录体积分析]] | os.walk 递归累加、子目录排行、单位换算 |
 | [[04-目录监听自动化]] | watchdog 常驻、等文件写完再处理 |
 
+**`files/paths/` — 路径与文件系统操作**
+
+| 笔记 | 内容 |
+| --- | --- |
+| [[01-pathlib速查]] | `pathlib` ↔ `os.path` 全量对照、`resolve`/`absolute` 区别、normpath |
+| [[02-文件匹配与遍历]] | `rglob` 递归、忽略大小写写法、`re.fullmatch` 精筛 |
+| [[03-目录创建与清空]] | `exist_ok`、清空保留目录、**符号链接必须先拦**、`.gitkeep` |
+| [[04-脚本路径定位与打包资源]] | `__file__` vs `getcwd`、`sys.executable`、`sys._MEIPASS` + `--add-data` |
+| [[05-路径逻辑的组织方式]] | config.py 全局 vs 参数传入 vs 混合、对比表、CLI / 环境变量覆盖 |
+
 ## web/ — 网络
 
 | 笔记 | 内容 |
 | --- | --- |
 | [[01-Flask全链路]] | 路由、请求取值、模板/JSON、pymysql、ECharts 联调、起步清单 |
 | [[02-网页抓取]] | requests+BS4、Selenium、构造编码下载链接 |
+| [[03-Selenium反检测配置]] | 启动参数隐藏自动化、JS 指纹伪装、ActionChains 拟人、sannysoft 自检 |
+
+## gui/ — 桌面界面
+
+| 笔记 | 内容 |
+| --- | --- |
+| [[01-PyQt入门与核心机制]] | PySide6 与 PyQt 选型、事件循环、信号槽、四种布局、进度条线程、QChart、Designer 与 QSS |
+| [[02-长任务进度反馈]] | 生成器产进度 + QThread 消费 + Signal 回主线程、`emit(*item)` 解包、协作式取消与异常边界 |
 
 ## quality/ — 可观测与健壮
 
@@ -120,7 +155,7 @@ status: ok
 | [[Python Env Setup for wsl2]] | WSL2 + Miniconda + PyCharm |
 | [[Python Env Setup]] | 虚拟机 Linux（Ubuntu/CentOS）+ Anaconda + Python 3.12 |
 | [[python 编辑环境创建]] | Conda 环境管理与开发配置（精简版） |
-| [[常用命令]] | conda 常用命令 |
+| [[虚拟环境venv与conda]] | venv 五步流程与四种 shell 激活、venv↔conda 选型、pip/conda 混用顺序、环境常用命令 |
 | [[windows版卸载anaconda]] | Windows 下彻底卸载 Anaconda |
 
 **`env/packaging/` — 打包分发**

@@ -33,6 +33,8 @@ MY_TEMP_DIR.mkdir(parents=True, exist_ok=True)
 - 业务自己生成的上传副本、导出文件，直接用 `MY_TEMP_DIR / "filename"`，用 `Path` 完成读写，业务代码本身不需要 `tempfile` 库。
 - **陷阱**：exe 不能放在 `C:\Program Files` 等系统受保护目录，否则无法创建子目录写入文件。
 
+> 路径定位的完整版（`__file__` / `getcwd` 的危害 / `sys._MEIPASS` / `--add-data` / 两类资源怎么取）见 [[04-脚本路径定位与打包资源]]，本节只保留打包场景需要的最小片段。
+
 ## 2. Werkzeug 上传与 SpooledTemporaryFile 机制
 
 Werkzeug 处理文件上传存在内存落盘逻辑：

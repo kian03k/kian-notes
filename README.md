@@ -34,7 +34,7 @@ kian-notes/
 
 ## 常用入口
 
-- Python：[cs/dev/python/index.md](cs/dev/python/index.md)（六层：语言基础 / 数据处理 / 文件操作 / 网络 / 日志异常 / 环境交付）
+- Python：[cs/dev/python/index.md](cs/dev/python/index.md)（七层：语言基础 / 数据处理 / 文件操作 / 网络 / 桌面界面 / 日志异常 / 环境交付）
 - Git：[cs/dev/git/index.md](cs/dev/git/index.md)（全链路教程 + 配置 + 场景化操作）
 - 开发环境：[Python 环境搭建](cs/dev/python/env/setup/Python%20Env%20Setup.md)
 - Docker / MySQL：[cs/infra/docker](cs/infra/docker/MySQL/1.安装.md)
@@ -82,14 +82,17 @@ python/
 │   ├── 01~04     # 主干，按序读（速查/函数进阶/面向对象/循环跳出）
 │   └── advanced/ # 进阶深化（装饰器与 wraps / 参数传递 / 迭代器协议）
 ├── data/         # 打开某种内容 → 解析 → 改写 → 出图
-│   ├── index.md  # 16 篇，超 12 篇阈值，自带子索引
+│   ├── index.md  # 18 篇，超 12 篇阈值，自带子索引
 │   ├── pandas/   # 表格数据处理（01~06 连号）
 │   ├── excel/    # Excel / CSV 文件读写
 │   ├── text/     # 字符串与正则
 │   ├── charts/   # 出图
-│   └── media/    # 音视频处理（FFmpeg）
+│   ├── media/    # 音视频处理（FFmpeg）
+│   └── serialization/ # pickle 与压缩
 ├── files/        # 对文件本身动手（改名/去重/体积/监听）
-├── web/          # 跟浏览器和 HTTP 打交道（Flask + 抓取）
+│   └── paths/    # 路径与文件系统操作（pathlib / 遍历 / 建删目录 / 定位资源）
+├── web/          # 跟浏览器和 HTTP 打交道（Flask / 抓取 / 反检测）
+├── gui/          # 桌面窗口：控件、布局、长任务进度反馈
 ├── quality/      # 出错时看得见、运行时扛得住
 │   ├── logging/    # 日志接入（00 总览 + 01~04）
 │   └── exceptions/ # 异常处理
@@ -106,7 +109,7 @@ python/
 - 12 篇以内靠目录浏览即可，不为索引而索引。
 - `index.md` 只做链接导航（按子目录或主题分组），不写长篇内容。
 - 计数口径：目录树内所有 `.md`，不含 `assets/` 资源、不含 `_archive/`、不含 `index.md` 自身。
-- **当前已建索引**：`cs/dev/python/`（42 篇）、`cs/dev/git/`（20 篇）、`cs/ai/图像处理基础/`（10 篇，自带完整学习路线）、`network/`。接近阈值的：`network/题库/`（10 篇）、`network/协议/`（8 篇）。
+- **当前已建索引**：`cs/dev/python/`（53 篇）、`cs/dev/git/`（20 篇）、`cs/ai/图像处理基础/`（10 篇，自带完整学习路线）、`network/`。接近阈值的：`network/题库/`（10 篇）、`network/协议/`（8 篇）。
 
 ### 三、资源（图片/附件）规则
 
