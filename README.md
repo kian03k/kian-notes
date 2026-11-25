@@ -34,7 +34,7 @@ kian-notes/
 
 ## 常用入口
 
-- Python：[cs/dev/python/index.md](cs/dev/python/index.md)（七层：语言基础 / 数据处理 / 文件操作 / 网络 / 桌面界面 / 日志异常 / 环境交付）
+- Python：[cs/dev/python/index.md](cs/dev/python/index.md)（八层：语言基础 / 数据处理 / 文件操作 / 网络 / 桌面界面 / 缓存 / 日志异常 / 环境交付）
 - Git：[cs/dev/git/index.md](cs/dev/git/index.md)（全链路教程 + 配置 + 场景化操作）
 - 开发环境：[Python 环境搭建](cs/dev/python/env/setup/Python%20Env%20Setup.md)
 - Docker / MySQL：[cs/infra/docker](cs/infra/docker/MySQL/1.安装.md)
@@ -93,6 +93,7 @@ python/
 │   └── paths/    # 路径与文件系统操作（pathlib / 遍历 / 建删目录 / 定位资源）
 ├── web/          # 跟浏览器和 HTTP 打交道（Flask / 抓取 / 反检测）
 ├── gui/          # 桌面窗口：控件、布局、长任务进度反馈
+├── cache/        # 算过的结果留下来复用（进程内缓存）
 ├── quality/      # 出错时看得见、运行时扛得住
 │   ├── logging/    # 日志接入（00 总览 + 01~04）
 │   └── exceptions/ # 异常处理
@@ -109,7 +110,7 @@ python/
 - 12 篇以内靠目录浏览即可，不为索引而索引。
 - `index.md` 只做链接导航（按子目录或主题分组），不写长篇内容。
 - 计数口径：目录树内所有 `.md`，不含 `assets/` 资源、不含 `_archive/`、不含 `index.md` 自身。
-- **当前已建索引**：`cs/dev/python/`（53 篇）、`cs/dev/git/`（20 篇）、`cs/ai/图像处理基础/`（10 篇，自带完整学习路线）、`network/`。接近阈值的：`network/题库/`（10 篇）、`network/协议/`（8 篇）。
+- **当前已建索引**：`cs/dev/python/`（54 篇）、`cs/dev/git/`（20 篇）、`cs/ai/图像处理基础/`（10 篇，自带完整学习路线）、`network/`。接近阈值的：`network/题库/`（10 篇）、`network/协议/`（8 篇）。
 
 ### 三、资源（图片/附件）规则
 
